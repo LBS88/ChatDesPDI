@@ -28,7 +28,6 @@ public class SwingChatClient extends JFrame {
 
     private JTextPane chatArea;       // Displays chat messages
     private JTextField inputField;    // User input for sending messages
-    private JButton sendButton;       // Send button
     private PrintWriter out;          // Output stream to server
 
     private String username;
@@ -100,7 +99,8 @@ public class SwingChatClient extends JFrame {
         // Input area setup
         inputField = new JTextField();
         inputField.setFont(new Font("Lucida Console", Font.PLAIN, 16));
-        sendButton = new JButton("Send");
+        // Send button
+        JButton sendButton = new JButton("Send");
 
 
         JPanel inputPanel = new JPanel(new BorderLayout());
@@ -125,18 +125,8 @@ public class SwingChatClient extends JFrame {
         });
         featurePanel.add(colorButton);
 
-        // Add feature panel to top
+        // Add feature panel to top (pour changer de couleur)
         add(featurePanel, BorderLayout.NORTH);
-
-
-
-
-        // Optional feature panel for the HangmanGame
-//        JPanel featurePanel = new JPanel();
-//        JButton playHangmanBtn = new JButton("🎮 Play Hangman");
-//        playHangmanBtn.addActionListener(e -> new HangmanGUI());
-//        featurePanel.add(playHangmanBtn);
-//        add(featurePanel, BorderLayout.NORTH);
 
         setVisible(true);
         // Automatically focus the chat area

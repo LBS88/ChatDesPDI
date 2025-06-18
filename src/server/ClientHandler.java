@@ -1,6 +1,7 @@
 package server;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
 
@@ -36,9 +37,15 @@ public class ClientHandler implements Runnable {
 
                 // Expect encryptedUsername::encryptedMessage
                 // si le message est pas chiffré déco le mec
-                String[] parts = msg.split("::", 2);
+                String[] parts = msg.split("==::", 2);
                 if (parts.length != 2) {
                     System.out.println("Invalid message received");
+
+                    // Donne l'ip du message
+                    InetAddress clientAddress = clientSocket.getInetAddress();
+                    String ip = clientAddress.getHostAddress();
+
+                    System.out.println("Client IP: " + ip);
                     out.println("Ton message est en clair nigaud");
                     try {
                         clientSocket.close();
